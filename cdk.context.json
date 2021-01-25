@@ -1,0 +1,18 @@
+{
+  "hosted-zone:account=196295636944:domainName=api-network.info:region=af-south-1": {
+    "Id": "/hostedzone/Z09713513QA9VWOF89T48",
+    "Name": "api-network.info."
+  },
+  "hosted-zone:account=196295636944:domainName=api-network.info:region=ap-east-1": {
+    "Id": "/hostedzone/Z09713513QA9VWOF89T48",
+    "Name": "api-network.info."
+  },
+  "hosted-zone:account=196295636944:domainName=api-network.info:region=eu-south-1": {
+    "Id": "/hostedzone/Z09713513QA9VWOF89T48",
+    "Name": "api-network.info."
+  },
+  "hosted-zone:account=196295636944:domainName=api-network.info:region=me-south-1": {
+    "Id": "/hostedzone/Z09713513QA9VWOF89T48",
+    "Name": "api-network.info."
+  }
+}

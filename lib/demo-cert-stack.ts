@@ -1,0 +1,33 @@
+import * as cdk from '@aws-cdk/core';
+import * as acm from '@aws-cdk/aws-certificatemanager';
+import * as route53 from '@aws-cdk/aws-route53';
+
+interface DemoCertStackProps extends cdk.StackProps {
+  readonly domainName: string;
+  readonly subDomainName: string;
+  readonly env: any;
+}
+
+export class DemoCertStack extends cdk.Stack {
+  public readonly cert: acm.ICertificate;
+  public readonly regionalCert: acm.ICertificate;
+
+  constructor(scope: cdk.Construct, id: string, props: DemoCertStackProps) {
+    super(scope, id, props);
+      // CERTIFICATE
+      const zone = route53.HostedZone.fromLookup(this, "zone", { domainName: props.domainName });
+
+      const certificate = new acm.Certificate(this, 'Certificate', {
+         domainName: props.subDomainName.concat(props.domainName),
+         validation: acm.CertificateValidation.fromDns(zone),
+      });
+
+      const regionalCertificate = new acm.Certificate(this, 'regionalCertificate', {
+         domainName: props.env.region.concat("." + props.domainName),
+         validation: acm.CertificateValidation.fromDns(zone),
+      });
+
+      this.cert = certificate;
+      this.regionalCert = regionalCertificate;
+  }
+}
